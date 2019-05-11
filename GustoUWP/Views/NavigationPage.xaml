@@ -4,8 +4,74 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}"
+    Loaded="Page_Loaded"
     mc:Ignorable="d">
 
-    <Grid/>
+    <Page.Content>
+        <Grid>
+            <Grid x:Name="DragArea" Style="{StaticResource DragAreaGrid}">
+
+                <TextBlock Style="{StaticResource AppTitleText}"/>
+            </Grid>
+
+            <Grid
+                Width="230"
+                HorizontalAlignment="Left"
+                Background="{StaticResource NavigationViewDefaultPaneBackground}"
+                Canvas.ZIndex="0"/>
+
+            <NavigationView x:Name="NavView"
+                Margin="0,34,0,0"
+                SelectionChanged="NavView_SelectionChanged"
+                Style="{StaticResource NavView}">
+
+                <NavigationView.MenuItems>
+                    <NavigationViewItemHeader Content="Menu"/>
+
+                    <NavigationViewItem Content="Nowości" Tag="bookroom"/>
+                    <NavigationViewItem Content="Kubeczki plastikowe" Tag="list"/>
+                    <NavigationViewItem Content="Kwaśne żelki" Tag="addroom"/>
+                    <NavigationViewItem Content="Pianki" Tag="users"/>
+                    <NavigationViewItem Content="Mixy" Tag="users"/>
+                    <NavigationViewItem Content="Duże żelki" Tag="users"/>
+                    <NavigationViewItem Content="Zestawy" Tag="users"/>
+                    <NavigationViewItem Content="Dla dorosłych +18" Tag="users"/>
+                    <NavigationViewItem Content="Inne" Tag="users"/>
+
+                </NavigationView.MenuItems>
+
+                <NavigationView.PaneFooter>
+                    <StackPanel>
+                        <NavigationViewItem x:Name="UserText"
+                            Content="placeholder"
+                            Icon="Contact"
+                            IsEnabled="False"/>
+
+                        <NavigationViewItem x:Name="LogIn"
+                            Content="Zaloguj"
+                            Icon="NewWindow"
+                            Tapped="LogIn_Tapped"/>
+                        <NavigationViewItem x:Name="Logout"
+                            Content="Wyloguj"
+                            Icon="Cancel"
+                            Tapped="LogOut_Tapped"/>
+                    </StackPanel>
+                </NavigationView.PaneFooter>
+
+                <NavigationView.Content>
+                    <Grid>
+                        <TextBlock x:Name="PageTitle"
+                            Margin="24,12,12,12"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            FontSize="32"
+                            Text="Strona główna"/>
+
+                        <Frame x:Name="ContentFrame" Margin="12,60,0,0"/>
+                    </Grid>
+                </NavigationView.Content>
+            </NavigationView>
+        </Grid>
+    </Page.Content>
 </Page>
